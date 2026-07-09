@@ -41,9 +41,6 @@ git branch -d feature1
 git remote -v
 
 
-
-
-
 docker
 
 sudo docker run -it -p 1234:80 --name sample -d nginx
@@ -52,9 +49,61 @@ docker ps
 
 mkdir website
 cd website
-
-nano index.html
-
-sudo docker cp index.html sample:/usr/share/nginx/html/index.html
+sudo docker run -it -p 1234:80 --name sample -d nginx
 
 docker ps
+
+
+
+alpine
+
+Complete Workflow
+mkdir deep
+
+cd deep
+
+nano student.sh
+
+student.sh
+
+#!/bin/bash
+
+echo "Deep"
+chmod +x student.sh
+
+./student.sh
+
+nano Dockerfile
+
+Dockerfile
+
+FROM alpine
+
+COPY student.sh /student.sh
+
+RUN chmod +x /student.sh
+
+CMD ["/student.sh"]
+
+
+
+
+sudo docker pull alpine
+
+sudo docker run -it alpine sh
+
+
+
+touch info.txt
+
+echo "Welcome to Alpine Linux" > info.txt
+
+cat info.txt
+
+exit
+
+
+
+
+
+
